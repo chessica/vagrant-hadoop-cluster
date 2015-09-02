@@ -1,12 +1,10 @@
-$install_dir = "/tmp"
+$install_dir = "/home/vagrant"
 $hadoop_home = "${install_dir}/hadoop"
-$user = "ubuntu"
-$group = "ubuntu"
+$user = "vagrant"
+$group = "vagrant"
 $hadoop_master = '10.10.0.52'
 $hadoop_backup = '10.10.0.51'
 $hadoop_1 = '10.10.0.53'
-$hadoop_2 = '10.10.0.54'
-$hadoop_3 = '10.10.0.55'
 
 include hadoop
 include mahout
@@ -94,14 +92,6 @@ file{
 
 host { 'hadoop1':
     ip => "${hadoop_1}",
-}
-
-host { 'hadoop2':
-    ip => "${hadoop_2}",
-}
-
-host { 'hadoop3':
-    ip => "${hadoop_3}",
 }
 
 host { 'master':
