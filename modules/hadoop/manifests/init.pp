@@ -1,7 +1,7 @@
 class hadoop {
 
 exec { "download_hadoop":
-command => "wget -O /tmp/hadoop.tar.gz http://apache.mirrors.timporter.net/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz",
+command => "wget -O /tmp/hadoop.tar.gz http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1.tar.gz",
 path => $path,
 user => $user,
 group => $user,
