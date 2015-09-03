@@ -1,16 +1,17 @@
 class hadoop {
 
-exec { "download_hadoop":
-command => "wget -O /tmp/hadoop.tar.gz http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1.tar.gz",
-path => $path,
-user => $user,
-group => $user,
-unless => "ls ${install_dir} | grep hadoop-1.2.1",
-require => Package["openjdk-6-jdk"]
+exec { 
+    "download_hadoop":
+    command => "wget -O /vagrant/${hadoop_archive} ${hadoop_archive_url}",
+    path => $path,
+    user => $user,
+    group => $user,
+    unless => "ls /vagrant/${hadoop_archive}",
+    require => Package["openjdk-6-jdk"]
 }
 
 exec { "unpack_hadoop" :
-  command => "tar -zxf /tmp/hadoop.tar.gz -C ${install_dir}",
+  command => "tar -zxf /vagrant/${hadoop_archive} -C ${install_dir}",
   path => $path,
   user => $user,
   group => $user,
