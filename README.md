@@ -9,7 +9,7 @@ These are the files that support the blogpost http://cscarioni.blogspot.co.uk/20
 
 `vagrant ssh master`
 
-`cd /opt/hadoop-xxx/bin`
+`cd /home/vagrant/hadoop-xxx/bin`
 
 `./hadoop namenode -format`
 
