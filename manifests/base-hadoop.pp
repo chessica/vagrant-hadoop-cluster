@@ -1,7 +1,7 @@
 $install_dir = "/home/vagrant"
 $hadoop_home = "${install_dir}/hadoop"
-$hadoop_archive = "hadoop-1.2.1.tar.gz"
-$hadoop_archive_url = "http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1.tar"
+$hadoop_archive = "hadoop-2.7.1.tar.gz"
+$hadoop_archive_url = "http://apache-mirror.rbc.ru/pub/apache/hadoop/common/stable/hadoop-2.7.1.tar.gz"
 $user = "vagrant"
 $group = "vagrant"
 $hadoop_master = '10.10.0.52'
@@ -34,14 +34,12 @@ user {
         managehome => true,
 		gid => $group
 }
-	
-
 
 exec { 'apt-get update':
     command => '/usr/bin/apt-get update',
 }
 
-package { "openjdk-6-jdk" :
+package { "openjdk-7-jdk" :
    ensure => present,
   require => [ Exec['apt-get update'], File["/home/${user}"] ]
 }
