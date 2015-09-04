@@ -18,15 +18,15 @@
 
 <configuration>
             <property>
-                       <name>dfs.replication</name>
-                       <value>3</value>
+                        <name>dfs.replication</name>
+                        <value>3</value>
             </property>
             <property>
-                       <name>dfs.namenode.name.dir</name>
-                       <value>file:<%= @hadoop_home %>-2.7.1/tmp/hdfs/namenode</value>
+                        <name>dfs.namenode.name.dir</name>
+                        <value>/home/vagrant/hadooptmp/hdfs/namenode</value>
             </property>
             <property>
-                       <name>dfs.datanode.data.dir</name>
-                       <value>file:<%= @hadoop_home %>-2.7.1/tmp/hdfs/datanode</value>
+                        <name>dfs.datanode.data.dir</name>
+                        <value>/home/vagrant/hadooptmp/hdfs/datanode</value>
             </property>
 </configuration>

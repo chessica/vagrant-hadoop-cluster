@@ -7,7 +7,6 @@ exec {
     user => $user,
     group => $user,
     unless => "ls /vagrant/${hadoop_archive}",
-    require => Package["openjdk-7-jdk"]
  }
 
 exec { "unpack_hadoop" :

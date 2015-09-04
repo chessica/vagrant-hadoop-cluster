@@ -15,8 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
   
   $provision_script2= <<SCRIPT
-   cat >> /home/vagrant/.bashrc << "EOF"
-	export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+    cat >> /home/vagrant/.bashrc << "EOF"
+    export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 	export HADOOP_INSTALL=/home/vagrant/hadoop-2.7.1
 	export PATH=$PATH:$HADOOP_INSTALL/bin
 	export PATH=$PATH:$HADOOP_INSTALL/sbin
@@ -24,9 +24,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	export HADOOP_COMMON_HOME=$HADOOP_INSTALL
 	export HADOOP_HDFS_HOME=$HADOOP_INSTALL
 	export YARN_HOME=$HADOOP_INSTALL
+	export HADOOP_PREFIX=$HADOOP_INSTALL
 EOF
 SCRIPT
   config.vm.provision :shell, :inline => $provision_script2
+  
+  config.vm.provision "shell", path: "java.sh"
 
   config.vm.define :backup do |box|
     box.vm.network :private_network, ip: "10.10.0.51"
@@ -41,6 +44,12 @@ SCRIPT
    config.vm.define :master do |master_config|
     master_config.vm.network :private_network, ip: "10.10.0.52"
     master_config.vm.host_name = "master"
+    master_config.vm.provision "shell", privileged: false, inline: <<-SHELL
+      cd ~/hadoop*
+      bin/hdfs namenode -format
+      sbin/start-dfs.sh
+      sbin/start-yarn.sh
+    SHELL
   end
 
 end
