@@ -11,9 +11,6 @@ Simply clone the repository, then
 
 `gem install vagrant `
 
-`vagrant box add base-hadoop http://files.vagrantup.com/lucid64.box`
-
-
 Maybe generate your own ssh-keygen pair of keys.. and replace them in the files id_rsa and id_rsa.pub in the modules/hadoop/files directory. Or for testing copy the provided `id_rsa` and `id_rsa.pub` into your `.ssh` directory.
 
 
@@ -23,8 +20,10 @@ then
 
 `vagrant ssh master`
 
-`cd /opt/hadoop-xxx/bin`
+'cd /home/vagrant/hadoop-2.7.1'
 
-`./hadoop namenode -format`
+'bin/hdfs namenode –format'
 
-`./start-all`
+'sbin/start-dfs.sh'
+
+'sbin/start-yarn.sh'

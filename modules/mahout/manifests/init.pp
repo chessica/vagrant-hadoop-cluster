@@ -1,7 +1,7 @@
 class mahout {
 
 file {
-  "${hadoop_home}-1.2.1/lib/mahout-examples-0.9-job.jar":
+  "${hadoop_home}-2.7.1/lib/mahout-examples-0.9-job.jar":
   source => "puppet:///modules/mahout/mahout-examples-0.9-job.jar",
   mode => 644,
   owner => $user,

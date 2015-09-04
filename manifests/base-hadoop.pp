@@ -1,12 +1,12 @@
-$install_dir = "/tmp"
+$install_dir = "/home/vagrant"
 $hadoop_home = "${install_dir}/hadoop"
-$user = "ubuntu"
-$group = "ubuntu"
+$hadoop_archive = "hadoop-2.7.1.tar.gz"
+$hadoop_archive_url = "http://apache-mirror.rbc.ru/pub/apache/hadoop/common/stable/hadoop-2.7.1.tar.gz"
+$user = "vagrant"
+$group = "vagrant"
 $hadoop_master = '10.10.0.52'
 $hadoop_backup = '10.10.0.51'
 $hadoop_1 = '10.10.0.53'
-$hadoop_2 = '10.10.0.54'
-$hadoop_3 = '10.10.0.55'
 
 include hadoop
 include mahout
@@ -34,14 +34,12 @@ user {
         managehome => true,
 		gid => $group
 }
-	
-
 
 exec { 'apt-get update':
     command => '/usr/bin/apt-get update',
 }
 
-package { "openjdk-6-jdk" :
+package { "openjdk-7-jdk" :
    ensure => present,
   require => [ Exec['apt-get update'], File["/home/${user}"] ]
 }
@@ -94,14 +92,6 @@ file{
 
 host { 'hadoop1':
     ip => "${hadoop_1}",
-}
-
-host { 'hadoop2':
-    ip => "${hadoop_2}",
-}
-
-host { 'hadoop3':
-    ip => "${hadoop_3}",
 }
 
 host { 'master':
