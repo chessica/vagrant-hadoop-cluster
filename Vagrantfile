@@ -41,6 +41,12 @@ SCRIPT
    config.vm.define :master do |master_config|
     master_config.vm.network :private_network, ip: "10.10.0.52"
     master_config.vm.host_name = "master"
+    master_config.vm.provision "shell", privileged: false, inline: <<-SHELL
+      cd ~/hadoop*
+      bin/hdfs namenode -format
+      sbin/start-dfs.sh
+      sbin/start-yarn.sh
+    SHELL
   end
 
 end
