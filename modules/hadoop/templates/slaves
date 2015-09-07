@@ -1,0 +1,3 @@
+<%= @hadoop_master %>
+<%= @hadoop_backup %>
+<%= @hadoop_1 %>

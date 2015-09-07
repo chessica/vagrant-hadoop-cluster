@@ -16,14 +16,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   $provision_script2= <<SCRIPT
    cat >> /home/vagrant/.bashrc << "EOF"
-	export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-	export HADOOP_INSTALL=/home/vagrant/hadoop-2.7.1
-	export PATH=$PATH:$HADOOP_INSTALL/bin
-	export PATH=$PATH:$HADOOP_INSTALL/sbin
-	export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-	export HADOOP_COMMON_HOME=$HADOOP_INSTALL
-	export HADOOP_HDFS_HOME=$HADOOP_INSTALL
-	export YARN_HOME=$HADOOP_INSTALL
+    export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+    export HADOOP_INSTALL=/home/vagrant/hadoop-2.7.1
+    export PATH=$PATH:$HADOOP_INSTALL/bin
+    export PATH=$PATH:$HADOOP_INSTALL/sbin
+    export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+    export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+    export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+    export YARN_HOME=$HADOOP_INSTALL
 EOF
 SCRIPT
   config.vm.provision :shell, :inline => $provision_script2
