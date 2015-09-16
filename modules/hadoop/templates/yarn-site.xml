@@ -41,4 +41,14 @@
                        <name>yarn.resourcemanager.admin.address</name>
                        <value>master:8033</value>
             </property>
+            <property>
+                <name>yarn.nodemanager.resource.memory-mb</name>
+                <value>2200</value>
+                <description>Amount of physical memory, in MB, that can be allocated for containers.</description>
+            </property>
+
+            <property>
+                <name>yarn.scheduler.minimum-allocation-mb</name>
+                <value>500</value>
+            </property>
 </configuration>
