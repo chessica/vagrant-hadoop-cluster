@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 1532
+    vb.memory = 1024
   end
 
   config.vm.provision :puppet do |puppet|
@@ -41,7 +41,12 @@ SCRIPT
     hadoop1_config.vm.host_name = "hadoop1"
   end
 
+  
+  
    config.vm.define :master do |master_config|
+    master_config.vm.provider "virtualbox" do |master_vb|
+        master_vb.memory = 2048
+    end  
     master_config.vm.network :private_network, ip: "10.10.0.52"
     master_config.vm.host_name = "master"
     master_config.vm.provision "shell", privileged: false, inline: <<-SHELL
@@ -51,8 +56,9 @@ SCRIPT
       mv apache-tomcat-7.0.64 tomcat7
       echo "export CATALINA_HOME=\"/home/vagrant/tomcat7\"" >> ~/.bashrc
       source ~/.bashrc
-      mkdir results
-      mkdir uploaded
+      mkdir chessica
+      mkdir chessica/results
+      mkdir chessica/uploaded
       cd ~/hadoop*
       bin/hdfs namenode -format
       sbin/start-dfs.sh
